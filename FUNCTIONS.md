@@ -19,15 +19,15 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { PetstoreCore } from "petstore-sdk/core.js";
-import { listPets } from "petstore-sdk/funcs/list-pets.js";
+import { SDKCore } from "openapi/core.js";
+import { listPets } from "openapi/funcs/list-pets.js";
 
-// Use `PetstoreCore` for best tree-shaking performance.
+// Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const petstore = new PetstoreCore();
+const sdk = new SDKCore();
 
 async function run() {
-  const res = await listPets(petstore);
+  const res = await listPets(sdk);
   if (res.ok) {
     const { value: result } = res;
     console.log(result);

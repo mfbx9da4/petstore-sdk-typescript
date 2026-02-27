@@ -1,6 +1,6 @@
-# petstore-sdk Examples
+# openapi Examples
 
-This directory contains example scripts demonstrating how to use the petstore-sdk SDK.
+This directory contains example scripts demonstrating how to use the openapi SDK.
 
 ## Prerequisites
 

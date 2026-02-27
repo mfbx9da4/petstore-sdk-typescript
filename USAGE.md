@@ -1,11 +1,11 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { Petstore } from "petstore-sdk";
+import { SDK } from "openapi";
 
-const petstore = new Petstore();
+const sdk = new SDK();
 
 async function run() {
-  const result = await petstore.listPets();
+  const result = await sdk.listPets();
 
   console.log(result);
 }

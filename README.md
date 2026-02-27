@@ -68,6 +68,9 @@ bun add <UNSET>
 ```bash
 yarn add <UNSET>
 ```
+
+> [!NOTE]
+> This package is published with CommonJS and ES Modules (ESM) support.
 <!-- End SDK Installation [installation] -->
 
 <!-- Start Requirements [requirements] -->
@@ -82,12 +85,12 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { Petstore } from "petstore-sdk";
+import { SDK } from "openapi";
 
-const petstore = new Petstore();
+const sdk = new SDK();
 
 async function run() {
-  const result = await petstore.listPets();
+  const result = await sdk.listPets();
 
   console.log(result);
 }
@@ -103,9 +106,9 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [Petstore SDK](docs/sdks/petstore/README.md)
+### [SDK](docs/sdks/sdk/README.md)
 
-* [listPets](docs/sdks/petstore/README.md#listpets) - List all pets
+* [listPets](docs/sdks/sdk/README.md#listpets) - List all pets
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -125,7 +128,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`listPets`](docs/sdks/petstore/README.md#listpets) - List all pets
+- [`listPets`](docs/sdks/sdk/README.md#listpets) - List all pets
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->
@@ -137,12 +140,12 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { Petstore } from "petstore-sdk";
+import { SDK } from "openapi";
 
-const petstore = new Petstore();
+const sdk = new SDK();
 
 async function run() {
-  const result = await petstore.listPets({
+  const result = await sdk.listPets({
     retries: {
       strategy: "backoff",
       backoff: {
@@ -164,9 +167,9 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { Petstore } from "petstore-sdk";
+import { SDK } from "openapi";
 
-const petstore = new Petstore({
+const sdk = new SDK({
   retryConfig: {
     strategy: "backoff",
     backoff: {
@@ -180,7 +183,7 @@ const petstore = new Petstore({
 });
 
 async function run() {
-  const result = await petstore.listPets();
+  const result = await sdk.listPets();
 
   console.log(result);
 }
@@ -193,7 +196,7 @@ run();
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-[`PetstoreError`](./src/models/errors/petstore-error.ts) is the base class for all HTTP error responses. It has the following properties:
+[`SDKError`](./src/models/errors/sdk-error.ts) is the base class for all HTTP error responses. It has the following properties:
 
 | Property            | Type       | Description                                            |
 | ------------------- | ---------- | ------------------------------------------------------ |
@@ -205,18 +208,18 @@ run();
 
 ### Example
 ```typescript
-import { Petstore } from "petstore-sdk";
-import * as errors from "petstore-sdk/models/errors";
+import { SDK } from "openapi";
+import * as errors from "openapi/models/errors";
 
-const petstore = new Petstore();
+const sdk = new SDK();
 
 async function run() {
   try {
-    const result = await petstore.listPets();
+    const result = await sdk.listPets();
 
     console.log(result);
   } catch (error) {
-    if (error instanceof errors.PetstoreError) {
+    if (error instanceof errors.SDKError) {
       console.log(error.message);
       console.log(error.statusCode);
       console.log(error.body);
@@ -231,7 +234,7 @@ run();
 
 ### Error Classes
 **Primary error:**
-* [`PetstoreError`](./src/models/errors/petstore-error.ts): The base class for HTTP error responses.
+* [`SDKError`](./src/models/errors/sdk-error.ts): The base class for HTTP error responses.
 
 <details><summary>Less common errors (6)</summary>
 
@@ -245,7 +248,7 @@ run();
 * [`UnexpectedClientError`](./src/models/errors/http-client-errors.ts): Unrecognised or unexpected error.
 
 
-**Inherit from [`PetstoreError`](./src/models/errors/petstore-error.ts)**:
+**Inherit from [`SDKError`](./src/models/errors/sdk-error.ts)**:
 * [`ResponseValidationError`](./src/models/errors/response-validation-error.ts): Type mismatch between the data returned from the server and the structure expected by the SDK. See `error.rawValue` for the raw value and `error.pretty()` for a nicely formatted multi-line string.
 
 </details>
@@ -258,14 +261,14 @@ run();
 
 The default server can be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
-import { Petstore } from "petstore-sdk";
+import { SDK } from "openapi";
 
-const petstore = new Petstore({
+const sdk = new SDK({
   serverURL: "https://petstore.example.com",
 });
 
 async function run() {
-  const result = await petstore.listPets();
+  const result = await sdk.listPets();
 
   console.log(result);
 }
@@ -294,9 +297,9 @@ The following example shows how to:
 - use the `"requestError"` hook to log errors
 
 ```typescript
-import { Petstore } from "petstore-sdk";
+import { SDK } from "openapi";
 import { ProxyAgent } from "undici";
-import { HTTPClient } from "petstore-sdk/lib/http";
+import { HTTPClient } from "openapi/lib/http";
 
 const dispatcher = new ProxyAgent("http://proxy.example.com:8080");
 
@@ -324,7 +327,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new Petstore({ httpClient: httpClient });
+const sdk = new SDK({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -339,9 +342,9 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { Petstore } from "petstore-sdk";
+import { SDK } from "openapi";
 
-const sdk = new Petstore({ debugLogger: console });
+const sdk = new SDK({ debugLogger: console });
 ```
 <!-- End Debugging [debug] -->
 

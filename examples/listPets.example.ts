@@ -5,18 +5,18 @@
 import dotenv from "dotenv";
 dotenv.config();
 /**
- * Example usage of the petstore-sdk SDK
+ * Example usage of the openapi SDK
  *
  * To run this example from the examples directory:
  * npm run build && npx tsx listPets.example.ts
  */
 
-import { Petstore } from "petstore-sdk";
+import { SDK } from "openapi";
 
-const petstore = new Petstore();
+const sdk = new SDK();
 
 async function main() {
-  const result = await petstore.listPets();
+  const result = await sdk.listPets();
 
   console.log(result);
 }

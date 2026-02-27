@@ -3,7 +3,7 @@
  */
 
 export * from "./http-client-errors.js";
-export * from "./petstore-default-error.js";
-export * from "./petstore-error.js";
 export * from "./response-validation-error.js";
+export * from "./sdk-default-error.js";
+export * from "./sdk-error.js";
 export * from "./sdk-validation-error.js";

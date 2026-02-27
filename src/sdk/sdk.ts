@@ -4,16 +4,16 @@
 
 import { listPets } from "../funcs/list-pets.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as models from "../models/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
-export class Petstore extends ClientSDK {
+export class SDK extends ClientSDK {
   /**
    * List all pets
    */
   async listPets(
     options?: RequestOptions,
-  ): Promise<Array<components.Pet>> {
+  ): Promise<Array<models.Pet>> {
     return unwrapAsync(listPets(
       this,
       options,

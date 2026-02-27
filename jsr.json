@@ -1,12 +1,12 @@
 
 
 {
-  "name": "petstore-sdk",
-  "version": "0.1.2",
+  "name": "openapi",
+  "version": "0.0.2",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    
-    "./models/components": "./src/models/components/index.ts",    
+    "./models": "./src/models/index.ts",    
     "./models/operations": "./src/models/operations/index.ts",
     "./lib/config": "./src/lib/config.ts",
     "./lib/http": "./src/lib/http.ts",

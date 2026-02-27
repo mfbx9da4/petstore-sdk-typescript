@@ -3,12 +3,11 @@
  */
 
 import * as z from "zod/v4-mini";
-import { PetstoreCore } from "../core.js";
+import { SDKCore } from "../core.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
   ConnectionError,
   InvalidRequestError,
@@ -16,9 +15,10 @@ import {
   RequestTimeoutError,
   UnexpectedClientError,
 } from "../models/errors/http-client-errors.js";
-import { PetstoreError } from "../models/errors/petstore-error.js";
 import { ResponseValidationError } from "../models/errors/response-validation-error.js";
+import { SDKError } from "../models/errors/sdk-error.js";
 import { SDKValidationError } from "../models/errors/sdk-validation-error.js";
+import * as models from "../models/index.js";
 import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
@@ -26,12 +26,12 @@ import { Result } from "../types/fp.js";
  * List all pets
  */
 export function listPets(
-  client: PetstoreCore,
+  client: SDKCore,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    Array<components.Pet>,
-    | PetstoreError
+    Array<models.Pet>,
+    | SDKError
     | ResponseValidationError
     | ConnectionError
     | RequestAbortedError
@@ -48,13 +48,13 @@ export function listPets(
 }
 
 async function $do(
-  client: PetstoreCore,
+  client: SDKCore,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      Array<components.Pet>,
-      | PetstoreError
+      Array<models.Pet>,
+      | SDKError
       | ResponseValidationError
       | ConnectionError
       | RequestAbortedError
@@ -112,8 +112,8 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    Array<components.Pet>,
-    | PetstoreError
+    Array<models.Pet>,
+    | SDKError
     | ResponseValidationError
     | ConnectionError
     | RequestAbortedError
@@ -122,7 +122,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, z.array(components.Pet$inboundSchema)),
+    M.json(200, z.array(models.Pet$inboundSchema)),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req);
