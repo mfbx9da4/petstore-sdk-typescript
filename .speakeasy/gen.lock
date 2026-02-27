@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.733.3
   generationVersion: 2.845.11
-  releaseVersion: 0.0.8
-  configChecksum: 846ae45d19b4bd254e9c2bbfdb615198
+  releaseVersion: 0.0.11
+  configChecksum: a185536c9c94a6271597ca89e8950040
   repoURL: https://github.com/mfbx9da4/petstore-sdk-typescript
   installationURL: https://github.com/mfbx9da4/petstore-sdk-typescript
 persistentEdits:
@@ -80,11 +80,11 @@ trackedFiles:
     pristine_git_object: df551dc78fe1ee1914102051ff6c545538b24e3b
   jsr.json:
     id: 7f6ab7767282
-    last_write_checksum: sha1:44d76246fd460c095e7476f0e97fb5e097c4e6a2
+    last_write_checksum: sha1:cd890cee31a04ee27f047137fc076fa14c8e1aed
     pristine_git_object: 66da693c788921e8ca890a0dfeedcb7feecd5180
   package.json:
     id: 7030d0b2f71b
-    last_write_checksum: sha1:6662114c03be687e8a4b14ed242123cb33c35831
+    last_write_checksum: sha1:c3e981590ca6166c5253901b5b3da7bb74244ee3
     pristine_git_object: 26663a1397b1e5d7878d958567f45e07f881e781
   src/core.ts:
     id: f431fdbcd144
@@ -116,7 +116,7 @@ trackedFiles:
     pristine_git_object: 44be0eae8246521b230e8e711a88eff738fc015d
   src/lib/config.ts:
     id: 320761608fb3
-    last_write_checksum: sha1:8eb9ddef980274f8e7b550d4857aaedc377de487
+    last_write_checksum: sha1:83e65fe9a312450ce89db3e77d510acaca4339d0
     pristine_git_object: 669ccfd8361bd04648e7a03cd57ef441ab256876
   src/lib/dlv.ts:
     id: b1988214835a

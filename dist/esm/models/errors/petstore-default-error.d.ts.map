@@ -1,1 +1,0 @@
-{"version":3,"file":"petstore-default-error.d.ts","sourceRoot":"","sources":["../../../../src/models/errors/petstore-default-error.ts"],"names":[],"mappings":"AAIA,OAAO,EAAE,aAAa,EAAE,MAAM,qBAAqB,CAAC;AAEpD,0EAA0E;AAC1E,qBAAa,oBAAqB,SAAQ,aAAa;gBAEnD,OAAO,EAAE,MAAM,EACf,QAAQ,EAAE;QACR,QAAQ,EAAE,QAAQ,CAAC;QACnB,OAAO,EAAE,OAAO,CAAC;QACjB,IAAI,EAAE,MAAM,CAAC;KACd;CAyBJ"}
