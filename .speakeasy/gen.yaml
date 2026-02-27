@@ -32,7 +32,7 @@ generation:
     skipResponseBodyAssertions: false
   repoUrl: https://github.com/mfbx9da4/petstore-sdk-typescript
 typescript:
-  version: 0.0.5
+  version: 0.0.8
   acceptHeaderEnum: false
   additionalDependencies:
     dependencies: {}
