@@ -1,0 +1,13 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    petstore-source:
+        inputs:
+            - location: ./petstore.yaml
+        registry:
+            location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/petstore-source
+targets:
+    petstore-sdk:
+        target: typescript
+        source: petstore-source
+        output: .
